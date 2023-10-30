@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/url"
-	"strings"
+	// "strings"
 	// "rush/net/http"
 	"log"
 )
@@ -440,26 +440,31 @@ func (t *CheckoutTask) TotalWineScrape() error {
 		"WY",
 	}
 	storeIds := []string{"1101"}
-	stateByStoreId := map[string]string{}
-	for _, state := range states {
-		log.Println(state)
-		req, err := t.MakeChlsRequest("", nil)
-		t.LogDebug("%+v %+v", req, err)
-		req.Request.URL.Path = strings.Replace(req.Request.URL.Path, "CA", state, -1)
-		req.Request.Close = true
-		resp, err := t.doReq(t.client, req.Request)
-		if err != nil {
-			return err
-		}
-		var store TwStore
-		if err := readRespJsonDst(resp, &store); err == nil {
-			for _, s := range store.Stores {
-				log.Println(s.StoreNumber)
-				storeIds = append(storeIds, s.StoreNumber)
-				stateByStoreId[s.StoreNumber] = state
-			}
-		}
+	stateByStoreId := map[string]string{
+		"1101": "America",
 	}
+	for i := 0; i < len(states); i++ {
+		fmt.Println(states[i])
+	}
+	// for _, state := range states {
+	// 	log.Println(state)
+	// 	req, err := t.MakeChlsRequest("", nil)
+	// 	t.LogDebug("%+v %+v", req, err)
+	// 	req.Request.URL.Path = strings.Replace(req.Request.URL.Path, "CA", state, -1)
+	// 	req.Request.Close = true
+	// 	resp, err := t.doReq(t.client, req.Request)
+	// 	if err != nil {
+	// 		return err
+	// 	}
+	// 	var store TwStore
+	// 	if err := readRespJsonDst(resp, &store); err == nil {
+	// 		for _, s := range store.Stores {
+	// 			log.Println(s.StoreNumber)
+	// 			storeIds = append(storeIds, s.StoreNumber)
+	// 			stateByStoreId[s.StoreNumber] = state
+	// 		}
+	// 	}
+	// }
 	log.Println()
 	log.Printf("%v", storeIds)
 	for i := 0; i < len(storeIds); i++ {
