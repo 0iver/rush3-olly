@@ -443,7 +443,7 @@ func (t *CheckoutTask) TotalWineScrape() error {
 	stateByStoreId := map[string]string{}
 	for _, state := range states {
 		log.Println(state)
-		req, err := t.MakeChlsRequest(TW_STORES_CHLSJ, nil)
+		req, err := t.MakeChlsRequest("", nil)
 		t.LogDebug("%+v %+v", req, err)
 		req.Request.URL.Path = strings.Replace(req.Request.URL.Path, "CA", state, -1)
 		req.Request.Close = true

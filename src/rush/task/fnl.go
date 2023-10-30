@@ -96,8 +96,8 @@ func (t *CheckoutTask) fnlGetAccountGuest() (error) {
     "User-Agent",
     "Accept-Encoding",
     "Connection",
-    "Accept",
-    "X-acf-sensor-data",
+    "Accept", 
+   "X-acf-sensor-data",
     "X-Api-Version",
     "welove",
     "Content-Type",
@@ -993,8 +993,6 @@ func (t *CheckoutTask) FnlAppCheckout() error {
 		"accept-language": true,
 	}
 
-	var lastErr error = nil
-	var attempts uint = 0
 	// var retryStr string
 	return t.RetryTask(func() error {
 		// if lastErr != nil {
@@ -1086,8 +1084,8 @@ func (t *CheckoutTask) FnlAppCheckout() error {
 			return t.fnlDoCheckout(*sku, *colorWay, fnlOrder)
 		})
 	}, retry.Attempts(MAX_RETRIES), retry.MaxDelay(15 * time.Second), retry.Delay(1 * time.Second), retry.DelayType(retry.DefaultDelayType), retry.LastErrorOnly(true), retry.OnRetry(func(attempts_ uint, err_ error) {
-		attempts = attempts_ + 1
-		lastErr = err_
+		// attempts = attempts_ + 1
+		// lastErr = err_
     t.client.CloseIdleConnections()
     // if rt, ok := t.client.Transport.(*roundTripper); ok {
 	   //  log.Println("CLOSE ALL")

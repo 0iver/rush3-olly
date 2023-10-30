@@ -2446,9 +2446,9 @@ func (t *CheckoutTask) getClientHello() utls.ClientHelloID {
   if strings.Contains(t.Url.Host, "i.instagram.com") {// || strings.Contains(host, "prodmobloy2") {
     ch = utls.HelloIOS_Auto
   }
-  if strings.Contains(t.Url.Host, "www.yeezysupply.com") && strings.Contains(t.UserAgent, "Firefox") {
-    ch = utls.HelloFirefox_82
-  }
+  // if strings.Contains(t.Url.Host, "www.yeezysupply.com") && strings.Contains(t.UserAgent, "Firefox") {
+  //   ch = utls.HelloFirefox_82
+  // }
   // if strings.Contains(t.Url.Host, "www.champssports.com") && t.DefaultProto == "http/1.1" {
   // 	ch = utls.HelloRandomizedNoALPN
   // }
@@ -3698,9 +3698,9 @@ func (t *CheckoutTask) Run() error {
 		}
 	}
 
-	if t.Url.Host == "greenspaces.id" {
-		err = t.GsCheckout()
-	}
+	// if t.Url.Host == "greenspaces.id" {
+	// 	err = t.GsCheckout()
+	// }
 
 	if t.Url.Host == "www.nike.com" {
 		// headers := [][2]string {

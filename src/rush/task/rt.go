@@ -217,26 +217,26 @@ func (rt *roundTripper) dialTLSContextH2(ctx context.Context, network, addr stri
   switch prot {
   case http2.NextProtoTLS:
     // The remote peer is speaking HTTP 2 + TLS.
-    if rt.ClientHello == utls.HelloFirefox_82 {
-      rt.transport = &http2.Transport{
-        Context: rt.context,
-        DialTLSContext: rt.dialTLSHTTP2,
-        DisableCompression: true,
-        MaxHeaderListSize: 0xffffffff,
-        InitialWindowSize: 131072,
-        InitialHeaderTableSize: 65536,
-        // MaxHeaderListSize: 32768,
-        // InitialWindowSize: 65535,
-        // InitialHeaderTableSize: 4096,
-        PushHandler: newPushHandler(),
-        DebugCountBytes: rt.DebugCountBytes,
+    // if rt.ClientHello == utls.HelloFirefox_82 {
+    //   rt.transport = &http2.Transport{
+    //     Context: rt.context,
+    //     DialTLSContext: rt.dialTLSHTTP2,
+    //     DisableCompression: true,
+    //     MaxHeaderListSize: 0xffffffff,
+    //     InitialWindowSize: 131072,
+    //     InitialHeaderTableSize: 65536,
+    //     // MaxHeaderListSize: 32768,
+    //     // InitialWindowSize: 65535,
+    //     // InitialHeaderTableSize: 4096,
+    //     PushHandler: newPushHandler(),
+    //     DebugCountBytes: rt.DebugCountBytes,
 
-        // ReadIdleTimeout: 5*time.Second,
-        // PingTimeout: 5*time.Second,
-        // IdleConnTimeout: 10*time.Second,
-        // ConnPool:
-      }
-    } else {
+    //     // ReadIdleTimeout: 5*time.Second,
+    //     // PingTimeout: 5*time.Second,
+    //     // IdleConnTimeout: 10*time.Second,
+    //     // ConnPool:
+    //   }
+    // } else {
       rt.transport = &http2.Transport{
         Context: rt.context,
         DialTLSContext: rt.dialTLSHTTP2,
@@ -252,7 +252,7 @@ func (rt *roundTripper) dialTLSContextH2(ctx context.Context, network, addr stri
         // IdleConnTimeout: 10*time.Second,
         // ConnPool:
       }
-    }
+  // }
         // rt.transport.InitialWindowSize = 65535
       // rt.transport.InitialHeaderTableSize = 4096
       // rt.transport.MaxHeaderListSize = 32768

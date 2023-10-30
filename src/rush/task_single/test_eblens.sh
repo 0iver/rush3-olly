@@ -10,4 +10,4 @@ SIZE=${SIZE:-""}
 # PROXY="http://localhost:8084"
 PROFILE=${PROFILE:-"profile_test.json"}
 # go run . -size "$SIZE" -productUrl $PRODUCT_URL -profile "$(cat ./profile_coach.json)" -proxy $PROXY # "http://proxy:WOO4sVE@199.188.93.98:8000" # -proxy "http://localhost:8084" # -proxy "http://proxy:WOO4sVE@199.188.93.98:8000" #-proxy "http://localhost:8084" # -proxy "http://rushaio:rushaio@52.55.146.251:8084"
-go run . -size "$SIZE" -productUrl $PRODUCT_URL -profile "$(cat "$PROFILE")"  -proxy $PROXY
+go run . -size "$SIZE" -productUrl $PRODUCT_URL -profile "$(cat "$PROFILE")"  # -proxy $PROXY
