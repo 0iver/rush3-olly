@@ -10,76 +10,14 @@ import (
 	// "rush/net/http"
 	"log"
 )
-type TwProduct struct {
-	Brand struct {
-		ID   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"brand"`
-	Categories []struct {
-		ID            string `json:"id"`
-		Name          string `json:"name"`
-		Type          string `json:"type"`
-		URL           string `json:"url"`
-		StorefrontURL string `json:"storefrontUrl"`
-	} `json:"categories"`
-	ContainerType         string  `json:"containerType"`
-	CustomerAverageRating float64 `json:"customerAverageRating"`
-	CustomerReviewsCount  int     `json:"customerReviewsCount"`
-	Department            string  `json:"department"`
-	DirectType            string  `json:"directType"`
-	ID                    string  `json:"id"`
-	Images                []struct {
-		ImageType          string `json:"imageType"`
-		MobileOptimizedURL string `json:"mobileOptimizedUrl"`
-		ThumbnailURL       string `json:"thumbnailUrl"`
-		URL                string `json:"url"`
-		ZoomImageURL       string `json:"zoomImageUrl"`
-		AltText            string `json:"altText"`
-	} `json:"images"`
-	Name               string `json:"name"`
-	PackageDescription string `json:"packageDescription"`
-	Price              []struct {
-		Price float64 `json:"price"`
-		Type  string  `json:"type"`
-	} `json:"price"`
-	ProductURL    string `json:"productUrl"`
-	Review        string `json:"review"`
-	Rating        int    `json:"rating"`
-	SalesStrategy struct {
-		Name string `json:"name"`
-	} `json:"salesStrategy"`
-	ShoppingOptions []struct {
-		Eligible bool   `json:"eligible"`
-		Location string `json:"location"`
-		Type     string `json:"type"`
-		Selected bool   `json:"selected"`
-	} `json:"shoppingOptions"`
-	SkuID      string `json:"skuId"`
-	StockLevel []struct {
-		PurchaseLimit int `json:"purchaseLimit"`
-		Stock         int `json:"stock"`
-	} `json:"stockLevel"`
-	StoreDistance    float64 `json:"storeDistance"`
-	StoreID          string  `json:"storeId"`
-	StoreName        string  `json:"storeName"`
-	ItemTasteProfile string  `json:"itemTasteProfile"`
-	ItemStyle        string  `json:"itemStyle"`
-	ItemBody         string  `json:"itemBody"`
-	Transactional    bool    `json:"transactional"`
-	Type             string  `json:"type"`
-	Volume           string  `json:"volume"`
-	RatingSource     string  `json:"ratingSource,omitempty"`
-}
-
-type TwProductApiResp struct {
+type TwProducts struct {
 	SearchText   string `json:"searchText"`
 	CategoryName string `json:"categoryName"`
 	Pagination   struct {
-		Page         int    `json:"page"`
-		PageSize     int    `json:"pageSize"`
-		TotalPages   int    `json:"totalPages"`
-		TotalResults int    `json:"totalResults"`
-		NextPageURL  string `json:"nextPageUrl"`
+		Page         int `json:"page"`
+		PageSize     int `json:"pageSize"`
+		TotalPages   int `json:"totalPages"`
+		TotalResults int `json:"totalResults"`
 	} `json:"pagination"`
 	Facets []struct {
 		ID          string `json:"id"`
@@ -92,17 +30,113 @@ type TwProductApiResp struct {
 			Count    int    `json:"count"`
 			Selected bool   `json:"selected"`
 			Priority int    `json:"priority"`
-			URL      string `json:"url"`
 		} `json:"values"`
 	} `json:"facets"`
 	Sorts []struct {
 		ID       string `json:"id"`
 		Name     string `json:"name"`
 		Selected bool   `json:"selected"`
-		URL      string `json:"url"`
 	} `json:"sorts"`
 	RedirectionURL string `json:"redirectionUrl"`
-	Products       []TwProduct `json:"products"`
+	Products       []struct {
+		Bay   string `json:"bay"`
+		Brand struct {
+			ID   string `json:"id"`
+			Name string `json:"name"`
+		} `json:"brand"`
+		Categories []struct {
+			ID            string `json:"id"`
+			Name          string `json:"name"`
+			Type          string `json:"type"`
+			URL           string `json:"url"`
+			StorefrontURL string `json:"storefrontUrl"`
+		} `json:"categories"`
+		ContainerType         string  `json:"containerType"`
+		CustomerAverageRating float64 `json:"customerAverageRating"`
+		CustomerReviewsCount  int     `json:"customerReviewsCount"`
+		Department            string  `json:"department"`
+		DirectType            string  `json:"directType"`
+		ID                    string  `json:"id"`
+		Images                []struct {
+			ImageType          string `json:"imageType"`
+			MobileOptimizedURL string `json:"mobileOptimizedUrl"`
+			ThumbnailURL       string `json:"thumbnailUrl"`
+			URL                string `json:"url"`
+			ZoomImageURL       string `json:"zoomImageUrl"`
+			AltText            string `json:"altText"`
+		} `json:"images"`
+		Location           string   `json:"location"`
+		Merchbadge         []string `json:"merchbadge,omitempty"`
+		Name               string   `json:"name"`
+		PackageDescription string   `json:"packageDescription"`
+		PackageValue       string   `json:"packageValue"`
+		Price              []struct {
+			Price   float64 `json:"price"`
+			Type    string  `json:"type"`
+			ToolTip string  `json:"toolTip,omitempty"`
+		} `json:"price"`
+		ProductURL    string `json:"productUrl"`
+		Review        string `json:"review"`
+		Rating        int    `json:"rating"`
+		RatingSource  string `json:"ratingSource,omitempty"`
+		SalesStrategy struct {
+			Name string `json:"name"`
+		} `json:"salesStrategy"`
+		ShoppingOptions []struct {
+			Eligible bool   `json:"eligible"`
+			Location string `json:"location"`
+			Type     string `json:"type"`
+			Selected bool   `json:"selected"`
+		} `json:"shoppingOptions"`
+		SkuID      string `json:"skuId"`
+		StockLevel []struct {
+			PurchaseLimit int `json:"purchaseLimit"`
+			Stock         int `json:"stock"`
+		} `json:"stockLevel"`
+		StoreBadges []struct {
+			BadgeCode                 string `json:"badgeCode"`
+			BadgeName                 string `json:"badgeName"`
+			BadgeType                 string `json:"badgeType"`
+			BadgeSubType              string `json:"badgeSubType"`
+			BadgeTooltip              string `json:"badgeTooltip"`
+			BadgePromotionDescription string `json:"badgePromotionDescription"`
+		} `json:"storeBadges,omitempty"`
+		StoreDistance    float64 `json:"storeDistance"`
+		StoreID          string  `json:"storeId"`
+		StoreName        string  `json:"storeName"`
+		ItemTasteProfile string  `json:"itemTasteProfile"`
+		ItemStyle        string  `json:"itemStyle"`
+		ItemBody         string  `json:"itemBody"`
+		Transactional    bool    `json:"transactional"`
+		Type             string  `json:"type"`
+		Volume           string  `json:"volume"`
+		StockMessages    struct {
+			Messages []struct {
+				ShoppingMethod   string `json:"shoppingMethod"`
+				StockMessage     string `json:"stockMessage"`
+				AddToCartMessage string `json:"addToCartMessage"`
+				AddToCartStatus  bool   `json:"addToCartStatus"`
+			} `json:"messages"`
+			DigitalTransactional      bool `json:"digitalTransactional"`
+			DigitalInventoryQuantity  int  `json:"digitalInventoryQuantity"`
+			DigitalSpecialOrder       bool `json:"digitalSpecialOrder"`
+			DigitalLongTermOOS        bool `json:"digitalLongTermOOS"`
+			DigitalLimitedStock       bool `json:"digitalLimitedStock"`
+			DigitalInStock            bool `json:"digitalInStock"`
+			DigitalStoreQuantity      int  `json:"digitalStoreQuantity"`
+			ShippingTransactional     bool `json:"shippingTransactional"`
+			ShippingInventoryQuantity int  `json:"shippingInventoryQuantity"`
+			ShippingSpecialOrder      bool `json:"shippingSpecialOrder"`
+			ShippingLongTermOOS       bool `json:"shippingLongTermOOS"`
+			ShippingLimitedStock      bool `json:"shippingLimitedStock"`
+			ShippingInStock           bool `json:"shippingInStock"`
+			ShippingStoreQuantity     int  `json:"shippingStoreQuantity"`
+			DigitalDeliveryEligible   bool `json:"digitalDeliveryEligible"`
+		} `json:"stockMessages"`
+		TopSellerBadge struct {
+			BadgeText string `json:"badgeText"`
+		} `json:"topSellerBadge,omitempty"`
+	} `json:"products"`
 	AutoCorrect struct {
 	} `json:"autoCorrect"`
 	CategoryBreadcrumbs []struct {
@@ -116,160 +150,6 @@ type TwProductApiResp struct {
 	} `json:"seoMetaData"`
 	SearchAllStores bool `json:"searchAllStores"`
 	IsRelaxed       bool `json:"isRelaxed"`
-}
-
-type TwStore struct {
-	Pagination struct {
-		CurrentPage  int `json:"currentPage"`
-		PageSize     int `json:"pageSize"`
-		TotalPages   int `json:"totalPages"`
-		TotalResults int `json:"totalResults"`
-	} `json:"pagination"`
-	Metadata struct {
-		Geolocation struct {
-			Latitude     float64 `json:"latitude"`
-			Longitude    float64 `json:"longitude"`
-			State        string  `json:"state"`
-			StateIsoCode string  `json:"stateIsoCode"`
-		} `json:"geolocation"`
-		States []struct {
-			StateIsoCode string `json:"stateIsoCode"`
-			State        string `json:"state"`
-			Count        int    `json:"count"`
-			Selected     bool   `json:"selected,omitempty"`
-		} `json:"states"`
-	} `json:"metadata"`
-	Stores []struct {
-		Address1         string `json:"address1"`
-		Address2         string `json:"address2"`
-		BeerTastingHours struct {
-			HasHours  bool `json:"hasHours"`
-			ShowHours bool `json:"showHours"`
-		} `json:"beerTastingHours"`
-		City                       string `json:"city"`
-		DisplayMessage             bool   `json:"displayMessage"`
-		DisplaySpecialInstructions bool   `json:"displaySpecialInstructions"`
-		SpecialInstructionsHeader  string `json:"specialInstructionsHeader"`
-		SpecialInstructionsText    string `json:"specialInstructionsText"`
-		GenericHeader              struct {
-		} `json:"genericHeader"`
-		DisplayWeeklyAd               bool    `json:"displayWeeklyAd"`
-		WeeklyAdLink                  string  `json:"weeklyAdLink"`
-		Distance                      float64 `json:"distance"`
-		FormattedDistance             string  `json:"formattedDistance"`
-		Latitude                      float64 `json:"latitude"`
-		Longitude                     float64 `json:"longitude"`
-		Growler                       bool    `json:"growler"`
-		Humidor                       bool    `json:"humidor"`
-		Classroom                     bool    `json:"classroom"`
-		MarketingStatus               string  `json:"marketingStatus"`
-		MapImage                      string  `json:"mapImage"`
-		MessageHeader                 string  `json:"messageHeader"`
-		Message                       string  `json:"message"`
-		Name                          string  `json:"name"`
-		Phone                         string  `json:"phone"`
-		PhoneFormatted                string  `json:"phoneFormatted"`
-		RegulatoryStore               bool    `json:"regulatoryStore"`
-		CustomerServicePhone          string  `json:"customerServicePhone"`
-		CustomerServicePhoneFormatted string  `json:"customerServicePhoneFormatted"`
-		SpiritsHours                  struct {
-			HasHours  bool `json:"hasHours"`
-			ShowHours bool `json:"showHours"`
-		} `json:"spiritsHours"`
-		SpiritsTastingHours struct {
-			HasHours  bool `json:"hasHours"`
-			ShowHours bool `json:"showHours"`
-		} `json:"spiritsTastingHours"`
-		State        string `json:"state"`
-		StateShort   string `json:"stateShort"`
-		StateIsoCode string `json:"stateIsoCode"`
-		StoreHours   struct {
-			HasHours            bool   `json:"hasHours"`
-			ShowHours           bool   `json:"showHours"`
-			SpecialHoursMessage string `json:"specialHoursMessage"`
-			IsSpecialHours      bool   `json:"isSpecialHours"`
-			Days                []struct {
-				ClosedStatus           bool   `json:"closedStatus"`
-				ClosingTime            string `json:"closingTime"`
-				DayOfWeek              string `json:"dayOfWeek"`
-				OpeningTime            string `json:"openingTime"`
-				AlternateOperationTime bool   `json:"alternateOperationTime,omitempty"`
-			} `json:"days"`
-		} `json:"storeHours"`
-		NextWeekStoreHours struct {
-			HasHours  bool `json:"hasHours"`
-			ShowHours bool `json:"showHours"`
-			Days      []struct {
-				ClosedStatus bool   `json:"closedStatus"`
-				ClosingTime  string `json:"closingTime"`
-				DayOfWeek    string `json:"dayOfWeek"`
-				OpeningTime  string `json:"openingTime"`
-			} `json:"days"`
-		} `json:"nextWeekStoreHours"`
-		StoreImages []struct {
-			AltText   string `json:"altText"`
-			ImageType string `json:"imageType"`
-			Format    string `json:"format"`
-			URL       string `json:"url"`
-		} `json:"storeImages"`
-		StoreHeaderImage struct {
-		} `json:"storeHeaderImage"`
-		ThreeIcons []struct {
-			Display     bool   `json:"display"`
-			HeaderText  string `json:"headerText"`
-			Description string `json:"description"`
-			IconName    string `json:"iconName"`
-		} `json:"threeIcons,omitempty"`
-		ContentRightImage []struct {
-			HeaderText  string `json:"headerText"`
-			Description string `json:"description"`
-			LinkText    string `json:"linkText"`
-			LinkURL     string `json:"linkUrl"`
-			Image       struct {
-				AltText   string `json:"altText"`
-				ImageType string `json:"imageType"`
-				Format    string `json:"format"`
-				URL       string `json:"url"`
-			} `json:"image,omitempty"`
-			Display       bool   `json:"display,omitempty"`
-			SubHeaderText string `json:"subHeaderText,omitempty"`
-
-		} `json:"contentRightImage,omitempty"`
-		StoreNumber      string `json:"storeNumber"`
-		WineTastingHours struct {
-			HasHours  bool `json:"hasHours"`
-			ShowHours bool `json:"showHours"`
-			Days      []struct {
-				ClosedStatus bool   `json:"closedStatus"`
-				ClosingTime  string `json:"closingTime"`
-				DayOfWeek    string `json:"dayOfWeek"`
-				OpeningTime  string `json:"openingTime"`
-			} `json:"days"`
-		} `json:"wineTastingHours"`
-		WifiAvailable            bool   `json:"wifiAvailable"`
-		Zip                      string `json:"zip"`
-		SpiritsProhibited        bool   `json:"spiritsProhibited"`
-		HideTotalDiscovery       bool   `json:"hideTotalDiscovery"`
-		DeliveryEligible         bool   `json:"deliveryEligible"`
-		DeliveryTipEligible      bool   `json:"deliveryTipEligible"`
-		TimeZone                 string `json:"timeZone"`
-		LoyaltyProgram           string `json:"loyaltyProgram"`
-		FulfillmentDelayShipping bool   `json:"fulfillmentDelayShipping"`
-		FulfillmentDelayISP      bool   `json:"fulfillmentDelayISP"`
-		FutureDeliveryAllowed    bool   `json:"futureDeliveryAllowed"`
-		CurbsideAvailable        bool   `json:"curbsideAvailable"`
-		ServiceTypes             []struct {
-			Code              string `json:"code"`
-			OrderReadyByHours int    `json:"orderReadyByHours"`
-		} `json:"serviceTypes"`
-		SocialMedia []struct {
-			Display         bool   `json:"display"`
-			SocialMediaType string `json:"socialMediaType"`
-			HeaderLabel     string `json:"headerLabel"`
-			URL             string `json:"url"`
-			URLLabel        string `json:"urlLabel,omitempty"`
-		} `json:"socialMedia,omitempty"`
-	} `json:"stores"`
 }
 
 func (t *CheckoutTask) TwGenPxCookie() error {

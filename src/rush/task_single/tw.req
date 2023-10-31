@@ -1,0 +1,28 @@
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", "https://www.totalwine.com/search/api/product/categories/v2/categories/c0020/products?page=1&pageSize=24&state=US-CA&shoppingMethod=INSTORE_PICKUP%2CDELIVERY&userShoppingMethod=INSTORE_PICKUP&allStoresCount=true&storeId=1107&price=0-10000&batch=true", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	req.Header.Set("authority", "www.totalwine.com")
+	req.Header.Set("accept", "application/json, text/plain, */*")
+	req.Header.Set("accept-language", "en-US,en;q=0.9")
+	req.Header.Set("cookie", `_pxhd=; _pxvid=17f5fc7b-77f8-11ee-8d95-2a129ad3c271; pxcts=17f609af-77f8-11ee-8d95-f665015a1377; __pxvid=18076b69-77f8-11ee-9acc-0242ac120003; _px2=eyJ1IjoiMTcwZDBmYmQtNzdmOC0xMWVlLWI3ZjEtNjQ5ZTE4NTA3YjcyIiwidiI6IjE3ZjVmYzdiLTc3ZjgtMTFlZS04ZDk1LTJhMTI5YWQzYzI3MSIsInQiOjE1NjE1MDcyMDAwMDAsImgiOiI3MTJkNjNjNDU1OTU5NjE2ZDAyYTg3MjFjNDQyYTJjZTU1MzIyZjg2YTcyOGZlNDU3MjY0YThkNGFjZDVhYjJjIn0=; twm-userStoreInformation="ispStore~1107:ifcStore~1130@ifcStoreState~US-CA@method~INSTORE_PICKUP"; idm_guid=N2eb55a1c-e8a9-4e89-a21b-5ce4f2f59411; smcLastVisitTime=1; overrideStore=true; at_check=true; BVBRANDID=94aea47a-38e6-4166-8b3f-5b339ab1e3df; BVBRANDSID=6ea044b6-45c1-4b1f-9f6b-00aa7d850339; AMCVS_F0DA403D53C3CA7B0A490D4C%40AdobeOrg=1; rrSessionId=1e581d70-77f8-11ee-9a2d-dfa453a1fa4e; s_ecid=MCMID%7C67255010062551121180419176051833224831; 202109-MOV=false; gpv_pn=twm%3AProduct%3AProduct%20List%3AWine; _cs_mk_aa=0.5735875586603685_1698761804260; s_cc=true; _gcl_au=1.1.738662661.1698761804; _cs_c=0; rcs=eF5jYSlN9khMTTJIMUsy1001skzUNUkzttBNtrBI1bUwMzNKNbQwTbZIM-DKLSvJTOEzNzHWNdQ1BACdww52; __pdst=af071e0dd71d466cbd4bc521bf919f6b; _fbp=fb.1.1698761804688.668468733; _mibhv=anon-1698761804864-3706483024_6140; __wid=907251177; _pin_unauth=dWlkPU1qQmxOamM0Wm1JdE5tRmtOUzAwTVROakxXSTNPVE10WmpaaU9EWXdPVEUyTlROaw; dicbo_id=%7B%22dicbo_fetch%22%3A1698761805224%7D; __adroll_fpc=35125a7ee3251036648b5fa10511a124-1698761805226; QSI_HistorySession=https%3A%2F%2Fwww.totalwine.com%2Fwine%2Fc%2Fc0020%3F%26pageSize%3D24%26userPrice%3D0-10000~1698761807711; AMCV_F0DA403D53C3CA7B0A490D4C%40AdobeOrg=1176715910%7CMCIDTS%7C19662%7CMCMID%7C67255010062551121180419176051833224831%7CMCAAMLH-1699366611%7C9%7CMCAAMB-1699366611%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1698769011s%7CNONE%7CMCAID%7CNONE%7CMCSYNCSOP%7C411-19669%7CvVersion%7C5.4.0%7CMCCIDH%7C-361837592; _cs_cvars=%7B%7D; s_getNewRepeat=1698761813970-New; s_ppvl=twm%253AProduct%253AProduct%2520List%253AWine%2C17%2C17%2C970%2C1365%2C970%2C1920%2C1080%2C1%2CP; _uetsid=1e52f34077f811eea73003c0f27e2510; _uetvid=1e53253077f811eeaf27b97b079cf22d; OptanonConsent=isGpcEnabled=0&datestamp=Tue+Oct+31+2023+07%3A16%3A54+GMT-0700+(Pacific+Daylight+Time)&version=202310.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=1e691a4b-7588-4e15-8073-ba3864e8b193&interactionCount=1&landingPath=https%3A%2F%2Fwww.totalwine.com%2Fwine%2Fc%2Fc0020%3F%26pageSize%3D24%26userPrice%3D0-10000&groups=C0001%3A1%2CC0003%3A1%2CC0002%3A1%2CC0004%3A1; _cs_id=6366d102-3442-a72c-9ee0-36216b1872bd.1698761804.1.1698761814.1698761804.1675101724.1732925804330; _cs_s=3.0.1.1698763614441; __ar_v4=%7CWKLPKZXMFNFTZPTNFCJ7GM%3A20231030%3A2%7CRFTS7YL2E5D7RB5W5FDI5O%3A20231030%3A2; _br_uid_2=uid%3D8030326311351%3Av%3D12.0%3Ats%3D1698761807292%3Ahc%3D2; dtm_token_sc=AAAJjbbH_yO5-gAXEBp1AAAAAAE; dtm_token=AQEIjLfG_iK4-wEWERt0AQEBAQA; MGX_UC=JTdCJTIyTUdYX1AlMjIlM0ElN0IlMjJ2JTIyJTNBJTIyNDUzZWVhMzctZDBlZS00NjViLTk4ZTAtZWExN2Q0ZGI5ZDc4JTIyJTJDJTIyZSUyMiUzQTE2OTkyODc0MTU1MjMlN0QlMkMlMjJNR1hfUFglMjIlM0ElN0IlMjJ2JTIyJTNBJTIyMTVlZTJiMGYtNTM1ZS00MGQ3LTg1NGMtMDg3ZGVkZDg1YzJmJTIyJTJDJTIycyUyMiUzQXRydWUlMkMlMjJlJTIyJTNBMTY5ODc2MzYxNjIzNCU3RCUyQyUyMk1HWF9DSUQlMjIlM0ElN0IlMjJ2JTIyJTNBJTIyOGNkN2FjZDItYTc0NC00YTIyLThjZWMtZjExZDA4ZjJlYmFmJTIyJTJDJTIyZSUyMiUzQTE2OTkyODc0MTU1MjQlN0QlMkMlMjJNR1hfVlMlMjIlM0ElN0IlMjJ2JTIyJTNBMiUyQyUyMnMlMjIlM0F0cnVlJTJDJTIyZSUyMiUzQTE2OTg3NjM2MTYyMzQlN0QlMkMlMjJNR1hfRUlEJTIyJTNBJTdCJTIydiUyMiUzQSUyMm5zX3NlZ18xNDMlMjIlMkMlMjJzJTIyJTNBdHJ1ZSUyQyUyMmUlMjIlM0ExNjk4NzYzNjE2MjM0JTdEJTdE; forterToken=12e8ca7a198347c39a8b902b1cbe2647_1698761814405__UDF43-m4_17ck_; s_ppv=twm%253AProduct%253AProduct%2520List%253AWine%2C18%2C16%2C1090%2C1365%2C970%2C1920%2C1080%2C1%2CP; mbox=session#134a2a98ff3f4cf9b0be0c5a4e1a218e#1698763715|PC#134a2a98ff3f4cf9b0be0c5a4e1a218e.35_0#1762006614`)
+	req.Header.Set("if-none-match", `W/"2e5c6-H9DBbsn40RArfmKkqVmItlD1Q1A"`)
+	req.Header.Set("referer", "https://www.totalwine.com/wine/c/c0020?&pageSize=24&userPrice=0-10000")
+	req.Header.Set("sec-ch-ua", `"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"`)
+	req.Header.Set("sec-ch-ua-mobile", "?0")
+	req.Header.Set("sec-ch-ua-platform", `"Linux"`)
+	req.Header.Set("sec-fetch-dest", "empty")
+	req.Header.Set("sec-fetch-mode", "cors")
+	req.Header.Set("sec-fetch-site", "same-origin")
+	req.Header.Set("user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36")
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	bodyText, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", bodyText)
